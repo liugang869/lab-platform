@@ -1,8 +1,8 @@
 IP信息：
 
-centos IP 10.202.1.33
-website: 134.226.41.134 : (80/443)
-         db.ict.ac.cn
+server:  YOUR-INSIDE-IP
+website: YOUR-OUTSIDE-IP : (80/443)
+         YOUR-DOMAIN
 
 nohup python3 manage.py runserver > zserver.log &
 nohup python3 runscore.py > zscore.log &
