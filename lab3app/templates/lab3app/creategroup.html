@@ -1,0 +1,23 @@
+{% extends 'lab3app/groupmessage.html' %}
+
+{% block page_title %}创建分组{% endblock %}
+
+{% block page_group %}
+
+      <h3>创建分组：</h3>
+      <form action="{% url 'creategroupform' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="group_leader">组长：</label>
+            <input type="text" class="form-control" id="group_leader" name="group_leader" placeholder="请填写组长姓名" readonly value={{ student_name }}>
+          </div>
+
+        <div class="form-group">
+          <label for="group_name">组名：</label>
+            <input type="text" class="form-control" id="group_name" name="group_name" placeholder="请填写分组名称(支持中文英文和数字)">
+        </div>
+        <button type="submit" class="btn btn-primary">创建分组</button>
+        <h4><strong class="text-danger">{{ status_creategroup }}</strong></h4>
+      </form>
+
+{% endblock %}

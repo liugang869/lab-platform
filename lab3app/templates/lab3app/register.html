@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'lab3app/img/favicon.ico' %}">
+
+    <title>注册系统</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'lab3app/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'lab3app/css/signin.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" action="{% url 'registerform' %}" method='POST'>
+        {% csrf_token %}
+        <h2 class="form-signin-heading">欢迎注册Lab3系统</h2>
+        <label for="inputEmail" class="sr-only">邮件地址</label>
+        <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="邮箱地址(建议不使用QQ邮箱)" required="" autofocus="">
+        <label for="inputPassword" class="sr-only">账户密码</label>
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="设置账户密码(密码不支持修改)" required="">
+        
+        <label for="inputsid" class="sr-only">学号</label>
+        <input type="text" id="inputStudentId" name="inputStudentId" class="form-control" placeholder="学号(请准确填写)" required="" autofocus="">
+        <label for="inputsname" class="sr-only">姓名</label>
+        <input type="text" id="inputStudentName" name="inputStudentName" class="form-control" placeholder="中文姓名(请准确填写)" required="" autofocus="">
+
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="inputAgreement" value="agree-me" checked="checked">同意使用协议
+          </label>
+          <label>
+            <a href='{% url 'signin' %}'>已有账号,登录系统</a>
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
+        <h4><strong class="text-danger">{{ status_register }}</strong></h4>
+      </form>
+  
+    </div> <!-- /container -->
+
+</body></html>

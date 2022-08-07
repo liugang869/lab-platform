@@ -1,0 +1,75 @@
+{% extends 'lab3app/base.html' %}
+
+{% block page_title  %}分组消息{% endblock %}
+
+{% block page_content %}
+
+  <h3>分组消息：</h3>
+
+  {% if student_is_leader == True %}
+            <table class="table">
+            <thead>
+              <tr>
+                <th>发送者</th>
+                <th>接收者</th>
+                <th>消息类型</th>
+                <th>消息内容</th>
+                <th>消息时间</th>
+                <th>你的决定</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for message in messages %}
+              <tr>
+                <td>{{ message.message_from }}</td>
+                <td>{{ message.message_to }}</td>
+                <td>{% if message.message_request_or_answer == True %}发出请求{% else %}给予回复{% endif %}
+                </td>
+                <td>{% if message.message_join_or_quit == True %}加入{% else %}退出{% endif %}
+                </td>
+                <td>{{ message.message_time }}</td>
+                <td>
+                    {% if message.message_request_or_answer == True and message.message_revised == False %}
+                      <a href="{% url 'agreemessage' message.message_id %}">同意</a> 
+                      <a href="{% url 'refusemessage' message.message_id %}">拒绝</a> 
+                    {% else  %}无需操作
+                    {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+ 
+  {% else  %}
+            <table class="table">
+            <thead>
+              <tr>
+                <th>发送者</th>
+                <th>接收者</th>
+                <th>消息类型</th>
+                <th>消息结果</th>
+                <th>消息时间</th>
+                <th>你的决定</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for message in messages %}
+              <tr>
+                <td>{{ message.message_from }}</td>
+                <td>{{ message.message_to }}</td>
+                <td>{% if message.message_request_or_answer == True %}请求{% else %}回复{% endif %}
+                </td>
+                <td>{% if message.message_join_or_quit == True %}被同意{% else %}被拒绝{% endif %}
+                </td>
+                <td>{{ message.message_time }}</td>
+                <td>无需操作</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+  {% endif  %}
+  <h4><strong class="text-danger">{{ status_groupmessage }}</strong></h4>
+
+  {% block page_group  %}
+  {% endblock %}
+{% endblock %}

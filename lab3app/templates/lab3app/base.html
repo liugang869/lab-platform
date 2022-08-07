@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'lab3app/img/favicon.ico' %}">
+
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'lab3app/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'lab3app/css/base.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'welcome' %}">Lab3系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人信息<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'personal' %}">查看信息</a></li>
+                <li><a href="{% url 'score' %}">查询成绩</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分组信息<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'creategroup' %}">创建分组</a></li>
+                <li><a href="{% url 'joingroup' %}">加入分组</a></li>
+                <li><a href="{% url 'quitgroup' %}">退出分组</a></li>
+                <li><a href="{% url 'dismissgroup' %}">解散分组</a></li>
+              </ul>
+            </li>
+            <li><a href="{% url 'submit' %}">提交作业</a></li>
+            <li><a href="{% url 'suggestion' %}">意见建议</a></li>
+            <li><a href="{% url 'signout' %}">退出系统</a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <!-- Begin page content -->
+    <div class="container">
+        {% block page_content  %}
+            <p>this is base page</p>
+        {% endblock  %}
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">国科大本科生数据库系统课程Lab3系统 &copy; 2018 <a href="Mailto:liugang@ict.ac.cn?Subject=Lab3系统事务">联系我们</a></p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'lab3app/js/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{% static 'lab3app/bootstrap/js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

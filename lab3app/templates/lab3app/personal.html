@@ -1,0 +1,80 @@
+{% extends 'lab3app/base.html' %}
+
+{% block page_title  %}个人信息{% endblock %}
+
+{% block page_content %}
+        <div class="row">
+            
+            <h3>你的个人信息：</h3>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>邮箱地址</th>
+                <th>注册时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ student.student_id }}</td>
+                <td>{{ student.student_name }}</td>
+                <td>{{ student.student_email }}</td>
+                <td>{{ student.student_register_time }}</td>
+              </tr>
+            </tbody>
+            </table>
+
+            <h3>你的分组信息：</h3>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>组名</th>
+                <th>组长</th>
+                <th>队员</th>
+                <th>组序列号</th>
+                <th>组队时间</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ group.group_name }}</td>
+                <td>{{ group.group_leader }}</td>
+                <td>{{ group.group_members }}</td>
+                <td>{{ group.group_serial }}</td>
+                <td>{{ group.group_register_time }}</td>
+              </tr>
+            </tbody>
+            </table>
+
+            <h3>你的提交记录：</h3>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>提交序号</th>
+                <th>提交时间</th>
+                <th>评分状态</th>
+                <th>评分时间</th>
+                <th>评分结果</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for item in submissions %}
+              <tr>
+                <td>{{ item.submission_serial }}</td>
+                <td>{{ item.submission_time }}</td>
+                <td>{% if item.submission_revised == True %}已评分{% else %}待评分{% endif  %}
+                </td>
+                <td>{{ item.score_time }}</td>
+                <td>{{ item.score_total }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+         
+            <h4><strong class="text-danger">{{ status_personal }}</strong></h4>
+
+
+        </div>
+{% endblock %}
+

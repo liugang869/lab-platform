@@ -1,0 +1,36 @@
+{% extends 'lab3app/groupmessage.html' %}
+
+{% block page_title  %}加入分组{% endblock %}
+
+{% block page_group %}
+
+            <h3>所有分组信息：</h3>
+            <table class="table">
+            <thead>
+              <tr>
+                <th>组名</th>
+                <th>组长</th>
+                <th>当前组队</th>
+                <th>组序列号</th>
+                <th>组队时间</th>
+                <th>加入队伍</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+              <tr>
+                <td>{{ group.group_name }}</td>
+                <td>{{ group.group_leader }}</td>
+                <td>{{ group.group_members }}</td>
+                <td>{{ group.group_serial }}</td>
+                <td>{{ group.group_register_time }}</td>
+                <td><a href = "{% url 'joingroupform' group.group_serial %}">加入分组</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+            </table>
+
+            <h4><strong class="text-danger">{{ status_joingroup }}</strong></h4>
+
+
+{% endblock %}

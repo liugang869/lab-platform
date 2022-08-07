@@ -1,0 +1,22 @@
+{% extends 'lab3app/base.html' %}
+
+{% block page_title %}意见建议{% endblock %}
+
+{% block page_content %}
+
+  <form action="{% url 'suggestionform' %}" method="POST">
+     {% csrf_token %}
+     <div class="form-group">
+       <label for="suggestion_subject">主题：</label>
+       <input type="text" class="form-control" id="suggestion_subject" name="suggestion_subject" placeholder="意见或建议主题">
+     </div>
+     <div class="form-group">
+       <label for="suggestion_content">内容：</label>
+       <textarea class="form-control" id="suggestion_content" name="suggestion_content" rows="8" placeholder="意见或建议内容"></textarea>
+     </div>
+     <button type="submit" class="btn btn-primary">提交意见或建议</button>
+     <h4><strong class="text-danger">{{ status_suggestion }}</strong></h4>
+ 
+  </form>
+
+{% endblock %}
